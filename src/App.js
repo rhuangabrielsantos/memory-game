@@ -1,7 +1,35 @@
+import Card from './components/Card'
+
 function App() {
   return (
-    <div className="App" class="flex items-center justify-center bg-black w-screen h-screen">
-        <h1 class="text-white text-3xl">boilerplate tailwind with react.js</h1>
+    <div className="flex flex-col items-center justify-center bg-nosferatu w-screen h-screen">
+      <div>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
+
+      <div>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
+
+      <div>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
+
+      <div>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
     </div>
   );
 }
