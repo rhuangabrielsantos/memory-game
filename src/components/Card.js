@@ -26,20 +26,16 @@ const Card = ({ options, isOpen, flipCard, validateMatch }) => {
   }
   
   return (
-    <motion.div
+    <motion.div className="w-16 h-16 md:w-32 md:h-32"
       style={{
         position: "relative",
-        width: 100,
-        height: 100,
         float: "left",
         margin: 5
       }}
     >
       <motion.div
-        className="bg-dracula flex items-center justify-center"
+        className="bg-dracula flex items-center justify-center w-16 h-16 md:w-32 md:h-32"
         style={{
-          height: 100,
-          width: 100,
           borderRadius: 10,
           position: "absolute",
           WebkitBackfaceVisibility: "visible"
@@ -54,10 +50,8 @@ const Card = ({ options, isOpen, flipCard, validateMatch }) => {
       </motion.div>
 
       <motion.div
-        className="bg-vonCount flex items-center justify-center"
+        className="bg-vonCount flex items-center justify-center w-16 h-16 md:w-32 md:h-32"
         style={{
-          height: 100,
-          width: 100,
           borderRadius: 10,
           position: "absolute",
           WebkitBackfaceVisibility: "hidden"
