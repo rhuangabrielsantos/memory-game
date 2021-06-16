@@ -1,15 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import Logo from './../assets/logo.svg'
 
-export default function Card() {
-  const [isOpen, setIsOpen] = useState(false)
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
+import * as CardActions from '../store/actions/cards'
+
+const Card = ({ options, isOpen, flipCard, validateMatch }) => {
   const variants = {
     open: { rotateY: 0 },
     closed: { rotateY: 180 },
   }
 
+  function invokeFunction(id) {
+    flipCard(id)
+
+    sleep(1000).then(() => {
+      validateMatch()
+    });
+  }
+
+  function sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  }
+  
   return (
     <motion.div
       style={{
@@ -21,7 +36,7 @@ export default function Card() {
       }}
     >
       <motion.div
-        className="bg-vonCount flex items-center justify-center"
+        className="bg-dracula flex items-center justify-center"
         style={{
           height: 100,
           width: 100,
@@ -33,14 +48,14 @@ export default function Card() {
         animate={isOpen ? "open" : "closed"}
         variants={variants}
         transition={{ duration: 1 }}
-        onClick={() => setIsOpen(isOpen => !isOpen)}
+        onClick={() => invokeFunction(options.id)}
       >
-        <img src={Logo} alt="brain" className="w-3/4" />
+        <img src={Logo} alt="logo" className="w-3/4" />
       </motion.div>
 
       <motion.div
+        className="bg-vonCount flex items-center justify-center"
         style={{
-          background: "red",
           height: 100,
           width: 100,
           borderRadius: 10,
@@ -51,8 +66,15 @@ export default function Card() {
         animate={isOpen ? "open" : "closed"}
         variants={variants}
         transition={{ duration: 1 }}
-        onClick={() => setIsOpen(isOpen => !isOpen)}
-      />
+        onClick={() => flipCard(options.id)}
+      >
+        <img src={options.img} alt="object" className="w-3/4" />
+      </motion.div>
     </motion.div>
   )
 }
+
+const mapDispatchToProps = dispatch => 
+  bindActionCreators(CardActions, dispatch)
+
+export default connect(state => ({}), mapDispatchToProps)(Card)

@@ -1,36 +1,14 @@
-import Card from './components/Card'
+import React from 'react'
+import { Provider } from 'react-redux'
+import store from './store'
 
-function App() {
+import Board from './components/Board'
+
+const App = () => {
   return (
-    <div className="flex flex-col items-center justify-center bg-nosferatu w-screen h-screen">
-      <div>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
-
-      <div>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
-
-      <div>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
-
-      <div>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
-    </div>
+    <Provider store={store}>
+      <Board />
+    </Provider>
   );
 }
 
