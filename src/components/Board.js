@@ -6,7 +6,7 @@ import Card from './Card'
 const Board = ({ cards }) => {
   return (
     <div className="flex flex-col items-center justify-center bg-nosferatu h-screen w-screen">
-      <div>
+      <div className="grid grid-cols-4">
         {cards.map((card) => {
           return <Card options={card} isOpen={card.isOpen} key={card.id} />
         })}

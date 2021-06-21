@@ -16,7 +16,7 @@ const Card = ({ options, isOpen, flipCard, validateMatch }) => {
   function invokeFunction(id) {
     flipCard(id)
 
-    sleep(1000).then(() => {
+    sleep(780).then(() => {
       validateMatch()
     })
   }
@@ -27,7 +27,7 @@ const Card = ({ options, isOpen, flipCard, validateMatch }) => {
 
   return (
     <motion.div
-      className="w-16 h-16 md:w-32 md:h-32"
+      className="w-16 h-16 md:w-28 md:h-28"
       style={{
         position: 'relative',
         float: 'left',
@@ -35,7 +35,7 @@ const Card = ({ options, isOpen, flipCard, validateMatch }) => {
       }}
     >
       <motion.div
-        className="bg-dracula flex items-center justify-center w-16 h-16 md:w-32 md:h-32"
+        className="bg-dracula flex items-center justify-center w-16 h-16 md:w-28 md:h-28"
         style={{
           borderRadius: 10,
           position: 'absolute',
@@ -51,7 +51,7 @@ const Card = ({ options, isOpen, flipCard, validateMatch }) => {
       </motion.div>
 
       <motion.div
-        className="bg-vonCount flex items-center justify-center w-16 h-16 md:w-32 md:h-32"
+        className="bg-vonCount flex items-center justify-center w-16 h-16 md:w-28 md:h-28"
         style={{
           borderRadius: 10,
           position: 'absolute',
