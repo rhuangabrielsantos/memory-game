@@ -11,39 +11,39 @@ const INITIAL_CARDS_STATE = {
       img: Rain,
       isOpen: false,
       matchId: 3,
-      alreadyMatched: false
+      alreadyMatched: false,
     },
     {
       id: 2,
       img: Sun,
       isOpen: false,
       matchId: 4,
-      alreadyMatched: false
+      alreadyMatched: false,
     },
     {
       id: 3,
       img: Rain,
       isOpen: false,
       matchId: 1,
-      alreadyMatched: false
+      alreadyMatched: false,
     },
     {
       id: 4,
       img: Sun,
       isOpen: false,
       matchId: 2,
-      alreadyMatched: false
+      alreadyMatched: false,
     },
-  ]
+  ],
 }
 
 export default function game(game = INITIAL_CARDS_STATE, action) {
-  const cardsFlipped = game.cards.filter(card => {
+  const cardsFlipped = game.cards.filter((card) => {
     return card.isOpen === true && card.alreadyMatched === false
   })
 
   if (action.type === 'CLICK_CARD' && cardsFlipped.length !== 2) {
-    const newCards = game.cards.map(card => {
+    const newCards = game.cards.map((card) => {
       if (card.id === action.id) {
         return { ...card, isOpen: true }
       }
@@ -56,7 +56,11 @@ export default function game(game = INITIAL_CARDS_STATE, action) {
 
   if (action.type === 'VALIDATE_MATCH') {
     if (cardsFlipped.length === 2) {
-      game = GameActions.resetGameOrMatchCards(cardsFlipped[0], cardsFlipped[1], game)
+      game = GameActions.resetGameOrMatchCards(
+        cardsFlipped[0],
+        cardsFlipped[1],
+        game
+      )
     }
 
     return GameActions.validateEndGame(game)
