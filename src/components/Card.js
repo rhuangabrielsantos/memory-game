@@ -1,28 +1,28 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Logo from './../assets/logo.svg'
-
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { useDispatch } from 'react-redux'
 
 import * as CardActions from '../store/actions/cards'
 
-const Card = ({ options, isOpen, flipCard, validateMatch }) => {
+export default function Card({ options, isOpen }) {
   const variants = {
     open: { rotateY: 0 },
     closed: { rotateY: 180 },
   }
 
+  const dispatch = useDispatch()
+
   function invokeFunction(id) {
-    flipCard(id)
+    dispatch(CardActions.flipCard(id))
 
     sleep(780).then(() => {
-      validateMatch()
+      dispatch(CardActions.validateMatch())
     })
   }
 
   function sleep(time) {
-    return new Promise((resolve) => setTimeout(resolve, time))
+    return new Promise(resolve => setTimeout(resolve, time))
   }
 
   return (
@@ -61,15 +61,10 @@ const Card = ({ options, isOpen, flipCard, validateMatch }) => {
         animate={isOpen ? 'open' : 'closed'}
         variants={variants}
         transition={{ duration: 1 }}
-        onClick={() => flipCard(options.id)}
+        onClick={() => dispatch(CardActions.flipCard(options.id))}
       >
         <img src={options.img} alt="object" className="w-3/4" />
       </motion.div>
     </motion.div>
   )
 }
-
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(CardActions, dispatch)
-
-export default connect((state) => ({}), mapDispatchToProps)(Card)

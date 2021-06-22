@@ -128,12 +128,12 @@ const INITIAL_GAME_STATE = {
 }
 
 export default function game(game = INITIAL_GAME_STATE, action) {
-  const cardsFlipped = game.cards.filter((card) => {
+  const cardsFlipped = game.cards.filter(card => {
     return card.isOpen === true && card.alreadyMatched === false
   })
 
   if (action.type === 'CLICK_CARD' && cardsFlipped.length !== 2) {
-    const newCards = game.cards.map((card) => {
+    const newCards = game.cards.map(card => {
       if (card.id === action.id) {
         return { ...card, isOpen: true }
       }

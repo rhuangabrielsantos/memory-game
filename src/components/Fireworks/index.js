@@ -57,7 +57,7 @@ const Fireworks = ({ gameWasFinished }) => {
   return <div />
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   gameWasFinished: state.game.status,
 })
 
