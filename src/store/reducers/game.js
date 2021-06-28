@@ -1,5 +1,7 @@
 import * as GameActions from '../actions/game'
 
+import ArrayUtils from '../actions/arrayUtils'
+
 import Rain from '../../assets/rain.png'
 import Sun from '../../assets/sun.png'
 import Coke from '../../assets/coke.png'
@@ -11,7 +13,11 @@ import Smile from '../../assets/smile.png'
 
 const INITIAL_GAME_STATE = {
   status: false,
-  cards: [
+  cards: createShuffledCards(),
+}
+
+function createShuffledCards() {
+  const orderedCards = [
     {
       id: 1,
       img: Rain,
@@ -124,7 +130,9 @@ const INITIAL_GAME_STATE = {
       matchId: 15,
       alreadyMatched: false,
     },
-  ],
+  ];
+
+  return ArrayUtils.shuffle(orderedCards);
 }
 
 export default function game(game = INITIAL_GAME_STATE, action) {
