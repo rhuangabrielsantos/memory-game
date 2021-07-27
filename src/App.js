@@ -1,17 +1,17 @@
-import React from 'react'
-import { Provider } from 'react-redux'
-import store from './store'
+import React from "react";
+import { Provider } from "react-redux";
+import store from "./store";
 
-import Board from './components/Board'
-import Fireworks from './components/Fireworks'
+import Fireworks from "./components/Fireworks";
+import Main from "./components/Main";
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Board />
+      <Main />
       <Fireworks />
     </Provider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

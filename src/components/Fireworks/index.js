@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 
-import './index.css'
+import "./index.css";
 
 const Fireworks = ({ gameWasFinished }) => {
   if (gameWasFinished) {
@@ -51,14 +51,14 @@ const Fireworks = ({ gameWasFinished }) => {
           <div className="explosion"></div>
         </div>
       </div>
-    )
+    );
   }
 
-  return <div />
-}
+  return <div />;
+};
 
 const mapStateToProps = state => ({
-  gameWasFinished: state.game.status,
-})
+  gameWasFinished: state.game.endGame,
+});
 
-export default connect(mapStateToProps)(Fireworks)
+export default connect(mapStateToProps)(Fireworks);
