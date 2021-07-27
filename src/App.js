@@ -1,15 +1,20 @@
 import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 
 import Fireworks from "./components/Fireworks";
-import Main from "./components/Main";
+import Game from "./pages/Game";
+import Home from "./pages/Home";
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Main />
-      <Fireworks />
+      <BrowserRouter>
+        <Route path="/" component={Home} exact />
+        <Route path="/game" component={Game} />
+        <Fireworks />
+      </BrowserRouter>
     </Provider>
   );
 };
