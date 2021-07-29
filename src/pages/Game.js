@@ -2,11 +2,17 @@ import React from "react";
 import { FaArrowLeft, FaUndoAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+import { useAuth } from "../hooks/useAuth";
+
 import Board from "../components/Board";
 import Fireworks from "../components/Fireworks";
 import Footer from "../components/Footer";
 
 export default function Game() {
+  const { user } = useAuth();
+
+  console.log(user);
+
   function restartGame() {
     window.location.reload();
   }

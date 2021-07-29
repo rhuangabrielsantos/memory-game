@@ -6,14 +6,18 @@ import store from "./store";
 import Game from "./pages/Game";
 import Home from "./pages/Home";
 
+import { AuthContextProvider } from "./contexts/AuthContext";
+
 const App = () => {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Route path="/" component={Home} exact />
-        <Route path="/game" component={Game} />
-      </BrowserRouter>
-    </Provider>
+    <BrowserRouter>
+      <AuthContextProvider>
+        <Provider store={store}>
+          <Route path="/" component={Home} exact />
+          <Route path="/game" component={Game} />
+        </Provider>
+      </AuthContextProvider>
+    </BrowserRouter>
   );
 };
 
