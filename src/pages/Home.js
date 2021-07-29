@@ -14,7 +14,7 @@ export default function Home() {
       await signInWithGoogle();
     }
 
-    history.push("/game");
+    history.push("/dashboard");
   }
 
   return (

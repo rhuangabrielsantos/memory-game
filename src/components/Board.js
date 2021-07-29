@@ -6,6 +6,8 @@ import Card from "./Card";
 export default function Board() {
   const cards = useSelector(state => state.game.cards);
 
+  if (cards.length === 0) return;
+
   return (
     <div className="grid grid-cols-4">
       {cards.map(card => {

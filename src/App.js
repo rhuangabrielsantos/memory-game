@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 
+import Dashboard from "./pages/Dashboard";
 import Game from "./pages/Game";
 import Home from "./pages/Home";
 
@@ -14,7 +15,8 @@ const App = () => {
       <AuthContextProvider>
         <Provider store={store}>
           <Route path="/" component={Home} exact />
-          <Route path="/game" component={Game} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/game/:id" component={Game} />
         </Provider>
       </AuthContextProvider>
     </BrowserRouter>

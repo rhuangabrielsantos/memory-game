@@ -13,10 +13,10 @@ import Smile from "../../assets/smile.png";
 
 const INITIAL_GAME_STATE = {
   endGame: false,
-  cards: createShuffledCards(),
+  cards: [],
 };
 
-function createShuffledCards() {
+export function createShuffledCards() {
   const orderedCards = [
     {
       id: 1,
@@ -136,6 +136,12 @@ function createShuffledCards() {
 }
 
 export default function game(game = INITIAL_GAME_STATE, action) {
+  if (action.type === "CREATE_GAME") {
+    return { ...game, cards: action.cards };
+  }
+
+  if (game.cards.length === 0) return game;
+
   const cardsFlipped = game.cards.filter(card => {
     return card.isOpen === true && card.alreadyMatched === false;
   });
