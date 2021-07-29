@@ -27,9 +27,9 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col md:flex-row items-center justify-center">
-        <Link to="/game">
+        <Link to="/game/alone">
           <button className="bg-indigo-700 mb-5 md:mb-0 md:mr-5 hover:bg-opacity-75 duration-300 w-48 h-14 font-righteous text-cullen text-1xl rounded-xl md:w-80 md:h-20 md:text-2xl">
-            Jogar como convidado
+            Jogar Sozinho
           </button>
         </Link>
         <button
@@ -39,6 +39,10 @@ export default function Home() {
           Entrar com Google
         </button>
       </div>
+
+      <h3 className="font-roboto mt-3 text-cullen text-sm md:text-sm">
+        Para jogar com seus amigos, faça login com o google
+      </h3>
 
       <Footer />
     </div>
