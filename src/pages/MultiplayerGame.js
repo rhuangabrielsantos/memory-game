@@ -1,0 +1,48 @@
+import React from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import MultiplayerBoard from "../components/MultiplayerBoard";
+import Fireworks from "../components/Fireworks";
+import Footer from "../components/Footer";
+import { database } from "../services/firebase";
+
+export default function MultiplayerGame() {
+  const params = useParams();
+  const gameId = params.id;
+  const initialCards = useSelector(state => state.game.cards);
+
+  const [cards, setCards] = React.useState(initialCards);
+  const [gameWasFinished, setGameWasFinished] = React.useState(false);
+
+  useEffect(() => {
+    const gameRef = database.ref(`games/${gameId}`);
+
+    gameRef.on("value", game => {
+      const databaseGame = game.val();
+
+      setCards(databaseGame.cards);
+      setGameWasFinished(databaseGame.gameWasFinished);
+    });
+
+    return () => {
+      gameRef.off("value");
+    };
+  }, [gameId]);
+
+  if (cards.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <>
+      <div className="flex flex-col items-center justify-center bg-nosferatu h-screen w-screen">
+        <MultiplayerBoard cards={cards} gameId={gameId} />
+        <Footer />
+      </div>
+
+      <Fireworks gameWasFinished={gameWasFinished} />
+    </>
+  );
+}

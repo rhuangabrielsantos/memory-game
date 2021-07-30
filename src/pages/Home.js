@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
 
 import { useAuth } from "../hooks/useAuth";
 import Footer from "../components/Footer";
@@ -34,8 +35,9 @@ export default function Home() {
         </Link>
         <button
           onClick={handleLogin}
-          className="bg-marcelin hover:bg-opacity-75 duration-300 w-48 h-14 font-righteous text-cullen text-1xl rounded-xl md:w-80 md:h-20 md:text-2xl"
+          className="flex items-center justify-center bg-marcelin hover:bg-opacity-75 duration-300 w-48 h-14 font-righteous text-cullen text-1xl rounded-xl md:w-80 md:h-20 md:text-2xl"
         >
+          <FaGoogle className="mr-2" />
           Entrar com Google
         </button>
       </div>

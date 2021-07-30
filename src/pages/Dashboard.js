@@ -20,6 +20,7 @@ export default function Dashboard() {
     const firebaseGame = await gameRef.push({
       authorId: user?.id,
       cards: cards,
+      gameWasFinished: false,
     });
 
     dispatch({ type: "CREATE_GAME", cards: cards });
