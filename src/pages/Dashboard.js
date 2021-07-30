@@ -1,7 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { FaPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import Header from "../components/Header";
+import Ranking from "../components/Ranking";
+import Screen from "../components/Screen";
 
 import { useAuth } from "../hooks/useAuth";
 import { database } from "../services/firebase";
@@ -46,30 +50,42 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center bg-nosferatu h-screen w-screen">
-      <button
-        onClick={handleCreateGame}
-        className="bg-indigo-700 mb-5 md:mb-0 md:mr-5 hover:bg-opacity-75 duration-300 w-48 h-14 font-righteous text-cullen text-1xl rounded-xl md:w-80 md:h-20 md:text-2xl"
-      >
-        Criar jogo
-      </button>
+    <Screen>
+      <Header />
+      <Ranking />
 
-      <div>
-        <form onSubmit={handleJoinGame}>
-          <input
-            type="text"
-            className="w-48 h-14"
-            onChange={event => setGameCode(event.target.value)}
-            value={gameCode}
-          />
+      {user && (
+        <div className="flex flex-col items-center justify-center">
           <button
-            type="submit"
-            className="bg-indigo-700 mb-5 md:mb-0 md:mr-5 hover:bg-opacity-75 duration-300 w-48 h-14 font-righteous text-cullen text-1xl rounded-xl md:w-80 md:h-20 md:text-2xl"
+            onClick={handleCreateGame}
+            className="flex items-center justify-center bg-indigo-700 mb-5 md:mb-0 md:mr-5 hover:bg-opacity-75 duration-300 w-80 h-14 font-righteous text-cullen text-xl rounded-xl md:w-80 md:h-20 md:text-2xl"
+            disabled={!user}
           >
-            Entrar jogo existente
+            <FaPlus className="mr-2" />
+            Criar novo jogo
           </button>
-        </form>
-      </div>
-    </div>
+          <form onSubmit={handleJoinGame}>
+            <div className="flex items-center justify-center md:mt-5">
+              <input
+                type="text"
+                className="w-56 h-14 mr-4 rounded-md text-xl p-3 md:w-80 md:h-20"
+                placeholder="Código do jogo"
+                onChange={event => setGameCode(event.target.value)}
+                value={gameCode}
+              />
+              <button
+                type="submit"
+                className="bg-indigo-700 hover:bg-opacity-75 duration-300 w-20 h-14 font-righteous text-cullen text-xl rounded-md md:w-80 md:h-20 md:text-2xl"
+              >
+                Entrar
+              </button>
+            </div>
+          </form>
+          <p className="text-cullen text-sm w-80 text-center mt-4">
+            Digite o código para entrar em um jogo existente.
+          </p>
+        </div>
+      )}
+    </Screen>
   );
 }

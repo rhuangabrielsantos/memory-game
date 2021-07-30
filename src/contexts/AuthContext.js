@@ -49,8 +49,12 @@ export function AuthContextProvider(props) {
     }
   }
 
+  async function signOut() {
+    await auth.signOut();
+  }
+
   return (
-    <AuthContext.Provider value={{ user, signInWithGoogle }}>
+    <AuthContext.Provider value={{ user, signInWithGoogle, signOut }}>
       {props.children}
     </AuthContext.Provider>
   );

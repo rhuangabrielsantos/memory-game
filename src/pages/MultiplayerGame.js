@@ -8,6 +8,8 @@ import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 
 import { database } from "../services/firebase";
+import Screen from "../components/Screen";
+import Header from "../components/Header";
 
 export default function MultiplayerGame() {
   const params = useParams();
@@ -37,10 +39,11 @@ export default function MultiplayerGame() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center bg-nosferatu h-screen w-screen">
+      <Screen>
+        <Header />
         <MultiplayerBoard cards={cards} gameId={gameId} />
         <Footer />
-      </div>
+      </Screen>
 
       <Fireworks gameWasFinished={gameWasFinished} />
     </>

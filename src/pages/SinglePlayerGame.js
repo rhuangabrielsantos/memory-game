@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Board from "../components/Board";
 import Fireworks from "../components/Fireworks";
 import Footer from "../components/Footer";
+import Screen from "../components/Screen";
 import { createShuffledCards } from "../store/reducers/game";
 
 export default function SinglePlayerGame() {
@@ -29,10 +30,10 @@ export default function SinglePlayerGame() {
         className="text-white text-4xl mb-4 absolute right-5 top-5 cursor-pointer"
       />
 
-      <div className="flex flex-col items-center justify-center bg-nosferatu h-screen w-screen">
+      <Screen>
         <Board />
         <Footer />
-      </div>
+      </Screen>
 
       <Fireworks />
     </>

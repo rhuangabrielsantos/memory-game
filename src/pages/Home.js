@@ -5,6 +5,7 @@ import { FaGoogle } from "react-icons/fa";
 import { useAuth } from "../hooks/useAuth";
 import Footer from "../components/Footer";
 import Logo from "../assets/logo.svg";
+import Screen from "../components/Screen";
 
 export default function Home() {
   const history = useHistory();
@@ -19,7 +20,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center bg-nosferatu h-screen w-screen">
+    <Screen>
       <div className="flex items-center justify-center mb-36 md:mb-24">
         <img src={Logo} alt="Logo" className="w-20 h-auto m-3 md:w-48 md:m-8" />
         <h1 className="font-righteous text-cullen text-4xl md:text-7xl">
@@ -47,6 +48,6 @@ export default function Home() {
       </h3>
 
       <Footer />
-    </div>
+    </Screen>
   );
 }
