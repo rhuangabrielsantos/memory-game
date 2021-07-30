@@ -38,7 +38,7 @@ export default function Home() {
           className="flex items-center justify-center bg-marcelin hover:bg-opacity-75 duration-300 w-48 h-14 font-righteous text-cullen text-1xl rounded-xl md:w-80 md:h-20 md:text-2xl"
         >
           <FaGoogle className="mr-2" />
-          Entrar com Google
+          Jogar com amigos
         </button>
       </div>
 

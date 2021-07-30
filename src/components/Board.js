@@ -1,9 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import Card from "./Card";
 
-export default function Board({ cards }) {
-  if (cards.length === 0) return;
+export default function Board() {
+  const cards = useSelector(state => state.game.cards);
 
   return (
     <div className="grid grid-cols-4">

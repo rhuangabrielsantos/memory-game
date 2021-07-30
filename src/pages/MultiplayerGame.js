@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import MultiplayerBoard from "../components/MultiplayerBoard";
 import Fireworks from "../components/Fireworks";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
+
 import { database } from "../services/firebase";
 
 export default function MultiplayerGame() {
@@ -32,7 +34,7 @@ export default function MultiplayerGame() {
   }, [gameId]);
 
   if (cards.length === 0) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (

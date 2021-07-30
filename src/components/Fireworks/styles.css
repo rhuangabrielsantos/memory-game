@@ -5,7 +5,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #2c2f69;
 }
 
 .firework {
@@ -59,7 +58,7 @@ body {
 }
 
 .explosion::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
