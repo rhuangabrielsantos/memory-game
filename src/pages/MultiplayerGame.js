@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import MultiplayerBoard from "../components/MultiplayerBoard";
 import Fireworks from "../components/Fireworks";
@@ -13,9 +12,8 @@ import { database } from "../services/firebase";
 export default function MultiplayerGame() {
   const params = useParams();
   const gameId = params.id;
-  const initialCards = useSelector(state => state.game.cards);
 
-  const [cards, setCards] = React.useState(initialCards);
+  const [cards, setCards] = React.useState([]);
   const [gameWasFinished, setGameWasFinished] = React.useState(false);
 
   useEffect(() => {

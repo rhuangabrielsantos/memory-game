@@ -23,8 +23,6 @@ export default function Dashboard() {
       gameWasFinished: false,
     });
 
-    dispatch({ type: "CREATE_GAME", cards: cards });
-
     history.push(`/game/${firebaseGame.key}`);
   }
 
