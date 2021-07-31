@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 import MultiplayerBoard from "../components/MultiplayerBoard";
 import Fireworks from "../components/Fireworks";
-import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 
 import { database } from "../services/firebase";
