@@ -79,7 +79,7 @@ export default function MultiplayerBoard({ cards, gameId }) {
         })}
       </div>
       {endMessage && (
-        <h1 className="text-cullen font-righteous text-2xl">{endMessage}</h1>
+        <h1 className="text-cullen font-righteous text-sm">{endMessage}</h1>
       )}
     </div>
   );

@@ -42,7 +42,6 @@ export default function MultiplayerGame() {
       <Screen>
         <Header />
         <MultiplayerBoard cards={cards} gameId={gameId} />
-        <Footer />
       </Screen>
 
       <Fireworks gameWasFinished={gameWasFinished} />
