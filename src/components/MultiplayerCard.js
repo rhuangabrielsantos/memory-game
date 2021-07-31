@@ -10,7 +10,13 @@ import {
   validateEndGame,
 } from "../services/game";
 
-export default function MultiplayerCard({ options, isOpen, gameId }) {
+export default function MultiplayerCard({
+  options,
+  isOpen,
+  gameId,
+  turn,
+  userId,
+}) {
   const variants = {
     open: { rotateY: 0 },
     closed: { rotateY: 180 },
@@ -19,8 +25,12 @@ export default function MultiplayerCard({ options, isOpen, gameId }) {
   const dispatch = useDispatch();
 
   async function invokeFunction(cardId) {
+    if (!turn) {
+      return;
+    }
+
     await rotateCards(gameId, cardId, isOpen);
-    await resetGameOrMatchCards(gameId);
+    await resetGameOrMatchCards(gameId, userId);
     await validateEndGame(gameId);
   }
 
