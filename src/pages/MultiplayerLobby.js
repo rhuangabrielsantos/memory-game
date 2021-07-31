@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { FaRegCopy } from "react-icons/fa";
 import { useHistory, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -47,6 +48,11 @@ export default function MultiplayerLobby() {
     }
 
     await database.ref(`games/${id}/start`).set(true);
+  }
+
+  function copyToClipboard() {
+    navigator.clipboard.writeText(id);
+    toast.dark("ID copiado para a área de transferência");
   }
 
   useEffect(() => {
@@ -99,7 +105,7 @@ export default function MultiplayerLobby() {
         ))}
       </div>
 
-      <div className="flex items-center justify-center mt-10">
+      <div className="flex flex-col md:flex-row items-center justify-center mt-10">
         {players.filter(player => {
           return player.id === user?.id;
         }).length !== 1 && (
@@ -112,12 +118,19 @@ export default function MultiplayerLobby() {
         )}
         {gameInformation.adminId === user?.id && (
           <button
-            className="w-36 h-14 rounded-md bg-indigo-700 text-white font-righteous"
+            className="w-36 h-14 rounded-md bg-indigo-700 text-white font-righteous mr-2"
             onClick={handleStartGame}
           >
             Começar Jogo
           </button>
         )}
+        <div
+          className="cursor-pointer w-60 h-14 mt-3 md:mt-0 flex items-center justify-center border-2 border-blue rounded-md"
+          onClick={copyToClipboard}
+        >
+          <FaRegCopy className="text-cullen w-6 h-auto mr-3" />
+          <span className="text-cullen font-righteous">{id}</span>
+        </div>
       </div>
       <ToastContainer
         position="top-right"
