@@ -3,21 +3,21 @@ import { useEffect } from "react";
 
 import { database } from "../services/firebase";
 import Loading from "./Loading";
-import { useAuth } from "../hooks/useAuth";
+// import { useAuth } from "../hooks/useAuth";
 
 export default function Ranking() {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const [ranking, setRanking] = React.useState([]);
 
-  async function handleVictory() {
-    await database.ref("ranking").push({
-      score: 2,
-      user: {
-        name: user.name,
-        avatar: user.avatar,
-      },
-    });
-  }
+  // async function handleVictory() {
+  //   await database.ref("ranking").push({
+  //     score: 2,
+  //     user: {
+  //       name: user.name,
+  //       avatar: user.avatar,
+  //     },
+  //   });
+  // }
 
   useEffect(() => {
     const rankingRef = database.ref("ranking");

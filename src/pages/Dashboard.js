@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Header from "../components/Header";
 import Ranking from "../components/Ranking";
@@ -12,7 +11,6 @@ import { database } from "../services/firebase";
 import { createShuffledCards } from "../store/reducers/game";
 
 export default function Dashboard() {
-  const dispatch = useDispatch();
   const history = useHistory();
   const { user } = useAuth();
   const [gameCode, setGameCode] = useState("");
@@ -22,12 +20,21 @@ export default function Dashboard() {
     const cards = createShuffledCards();
 
     const firebaseGame = await gameRef.push({
-      authorId: user?.id,
+      adminId: user.id,
       cards: cards,
       gameWasFinished: false,
+      start: false,
+      players: [],
     });
 
-    history.push(`/game/${firebaseGame.key}`);
+    await database.ref(`games/${firebaseGame.key}/players`).push({
+      id: user.id,
+      user,
+      score: 0,
+      myTurn: true,
+    });
+
+    history.push(`${firebaseGame.key}/lobby`);
   }
 
   async function handleJoinGame(event) {
@@ -44,9 +51,7 @@ export default function Dashboard() {
       return;
     }
 
-    dispatch({ type: "CREATE_GAME", cards: gameRef.val().cards });
-
-    history.push(`/game/${gameCode}`);
+    history.push(`${gameCode}/lobby`);
   }
 
   return (

@@ -31,8 +31,6 @@ export async function resetGameOrMatchCards(gameId) {
     const firstCard = cardsFlipped[0];
     const secondCard = cardsFlipped[1];
 
-    console.log(firstCard.matchId, secondCard.id);
-
     if (firstCard.matchId === secondCard.id) {
       const newCards = cards.map(card => {
         if (card.id === firstCard.id || card.id === secondCard.id) {
