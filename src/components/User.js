@@ -1,9 +1,8 @@
 import React from "react";
-import Loading from "./Loading";
 
 export default function User({ user, turn }) {
   if (!user?.avatar || !user?.name) {
-    return <Loading />;
+    return <div></div>;
   }
 
   return (

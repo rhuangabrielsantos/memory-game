@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -21,7 +23,12 @@ export default function MultiplayerLobby() {
 
   async function handleEnterGame() {
     if (!user) {
-      alert("Você precisa fazer login para entrar na partida");
+      toast.dark("Você precisa fazer login para entrar na partida");
+      return;
+    }
+
+    if (players.length === 4) {
+      toast.dark("O numero máximo de jogadores foi atingido");
       return;
     }
 
@@ -34,6 +41,11 @@ export default function MultiplayerLobby() {
   }
 
   async function handleStartGame() {
+    if (players.length === 1) {
+      toast.dark("Impossível iniciar a partida sozinho");
+      return;
+    }
+
     await database.ref(`games/${id}/start`).set(true);
   }
 
@@ -107,6 +119,18 @@ export default function MultiplayerLobby() {
           </button>
         )}
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
       <Footer />
     </Screen>
   );

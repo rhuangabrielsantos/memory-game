@@ -2,6 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Header from "../components/Header";
 import Ranking from "../components/Ranking";
 import Screen from "../components/Screen";
@@ -43,11 +46,12 @@ export default function Dashboard() {
     const gameRef = await database.ref(`games/${gameCode}`).get();
 
     if (gameCode.trim() === "") {
+      toast.dark("Por favor, insira o código do jogo");
       return;
     }
 
     if (!gameRef.exists()) {
-      alert("Game does not exists.");
+      toast.dark("Jogo não existe");
       return;
     }
 
@@ -91,6 +95,17 @@ export default function Dashboard() {
           </p>
         </div>
       )}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Screen>
   );
 }
