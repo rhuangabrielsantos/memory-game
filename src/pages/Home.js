@@ -29,7 +29,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col md:flex-row items-center justify-center">
-        <Link to="/game/alone">
+        <Link to="/alone/game">
           <button className="bg-indigo-700 mb-5 md:mb-0 md:mr-5 hover:bg-opacity-75 duration-300 w-48 h-14 font-righteous text-cullen text-1xl rounded-xl md:w-80 md:h-20 md:text-2xl">
             Jogar Sozinho
           </button>
