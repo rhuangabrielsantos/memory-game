@@ -7,6 +7,8 @@ import Header from "../components/Header";
 import ConfigurationGame from "../components/ConfigurationGame";
 import Screen from "../components/Screen";
 
+import Landing from "./Landing";
+
 import { useAuth } from "../hooks/useAuth";
 import { database } from "../services/firebase";
 import { createArrayCards } from "../store/reducers/cards";
@@ -52,29 +54,30 @@ export default function Home() {
 
   return (
     <Screen>
-      <Header />
-
-      <h1 className="font-righteous text-cullen text-xl">
-        Escolha a quantidade de cartas
-      </h1>
-
-      <ConfigurationGame>
-        <OptionGame format="16" active={is16} onClick={set16Game} />
-        <OptionGame format="24" active={is24} onClick={set24Game} />
-      </ConfigurationGame>
-
       {user ? (
-        <button
-          onClick={handleCreateGame}
-          className="flex items-center justify-center bg-indigo-700 mb-2 hover:bg-opacity-75 duration-300 w-64 h-14 font-righteous text-cullen text-xl rounded-md"
-          disabled={!user}
-        >
-          <FaPlus className="mr-2" />
-          Criar novo jogo
-        </button>
+        <>
+          <Header />
+          <h1 className="font-righteous text-cullen text-xl">
+            Escolha a quantidade de cartas
+          </h1>
+
+          <ConfigurationGame>
+            <OptionGame format="16" active={is16} onClick={set16Game} />
+            <OptionGame format="24" active={is24} onClick={set24Game} />
+          </ConfigurationGame>
+          <button
+            onClick={handleCreateGame}
+            className="flex items-center justify-center bg-indigo-700 mb-2 hover:bg-opacity-75 duration-300 w-64 h-14 font-righteous text-cullen text-xl rounded-md"
+            disabled={!user}
+          >
+            <FaPlus className="mr-2" />
+            Criar novo jogo
+          </button>
+        </>
       ) : (
-        // TODO: Criar um layout pra essa porra
-        <h1>Faça login para criar um novo jogo</h1>
+        <>
+          <Landing />
+        </>
       )}
     </Screen>
   );

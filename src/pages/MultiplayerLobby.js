@@ -99,7 +99,7 @@ export default function MultiplayerLobby() {
       <Header />
 
       <h1 className="font-righteous text-cullen text-5xl mb-10">Jogadores</h1>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 md:flex md:items-center md:justify-center">
         {players.map(player => (
           <User user={player.user} key={player.id} />
         ))}
