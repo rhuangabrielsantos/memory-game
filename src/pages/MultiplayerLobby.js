@@ -51,7 +51,7 @@ export default function MultiplayerLobby() {
   }
 
   function copyToClipboard() {
-    navigator.clipboard.writeText(id);
+    navigator.clipboard.writeText(`${process.env.REACT_APP_URL}/${id}/lobby`);
     toast.dark("ID copiado para a área de transferência");
   }
 
@@ -125,7 +125,7 @@ export default function MultiplayerLobby() {
           </button>
         )}
         <div
-          className="cursor-pointer w-60 h-14 mt-3 md:mt-0 flex items-center justify-center border-2 border-blue rounded-md"
+          className="cursor-pointer w-72 h-16 mt-3 md:mt-0 flex items-center justify-center border-2 border-blue rounded-md"
           onClick={copyToClipboard}
         >
           <FaRegCopy className="text-cullen w-6 h-auto mr-3" />
