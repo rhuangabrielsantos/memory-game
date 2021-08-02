@@ -12,9 +12,22 @@ export default function Ranking() {
 
     rankingRef.on("value", game => {
       const databaseRanking = game.val();
+      const rankingUsers = Object.values(databaseRanking);
 
-      if (databaseRanking) {
-        setRanking(Object.values(databaseRanking));
+      const orderedRanking = rankingUsers.sort((a, b) => {
+        if (a.score > b.score) {
+          return -1;
+        }
+
+        if (a.score < b.score) {
+          return 1;
+        }
+
+        return 0;
+      });
+
+      if (orderedRanking) {
+        setRanking(Object.values(orderedRanking));
       }
     });
 
