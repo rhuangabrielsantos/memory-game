@@ -62,7 +62,7 @@ export default function Ranking() {
                         />
                       </td>
 
-                      <td className="font-righteous text-lg text-cullen mr-5 w-4/8">
+                      <td className="font-righteous text-lg text-cullen mr-5 w-4/8 limit-text">
                         {item.user.name}
                       </td>
                       <td className="font-righteous text-lg text-cullen mr-5 w-1/8">
