@@ -1,23 +1,9 @@
 import * as GameActions from "../actions/game";
 
-import ArrayUtils from "../actions/arrayUtils";
-
-import cards from "./cards";
-
 const INITIAL_GAME_STATE = {
   endGame: false,
   cards: [],
 };
-
-export function createShuffledCards(totalCards) {
-  if (totalCards === 16) {
-    const orderedCards = cards.cards_16;
-    return ArrayUtils.shuffle(orderedCards);
-  }
-
-  const orderedCards = cards.cards_24;
-  return ArrayUtils.shuffle(orderedCards);
-}
 
 export default function game(game = INITIAL_GAME_STATE, action) {
   if (action.type === "CREATE_GAME") {

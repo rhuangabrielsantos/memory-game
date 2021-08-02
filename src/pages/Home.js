@@ -9,7 +9,7 @@ import Screen from "../components/Screen";
 
 import { useAuth } from "../hooks/useAuth";
 import { database } from "../services/firebase";
-import { createShuffledCards } from "../store/reducers/game";
+import { createArrayCards } from "../store/reducers/cards";
 import OptionGame from "../components/OptionGame";
 
 export default function Home() {
@@ -30,7 +30,7 @@ export default function Home() {
 
   async function handleCreateGame() {
     const gameRef = database.ref("games");
-    const cards = createShuffledCards(is16 ? 16 : 24);
+    const cards = createArrayCards(is16 ? 16 : 24);
 
     const firebaseGame = await gameRef.push({
       adminId: user.id,

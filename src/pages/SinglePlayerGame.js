@@ -7,11 +7,11 @@ import Board from "../components/Board";
 import Fireworks from "../components/Fireworks";
 import Footer from "../components/Footer";
 import Screen from "../components/Screen";
-import { createShuffledCards } from "../store/reducers/game";
+import { createArrayCards } from "../store/reducers/cards";
 
 export default function SinglePlayerGame() {
   const dispatch = useDispatch();
-  const cards = createShuffledCards();
+  const cards = createArrayCards(16);
 
   dispatch({ type: "CREATE_GAME", cards });
 
