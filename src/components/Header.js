@@ -24,7 +24,7 @@ export default function Header() {
   return user !== undefined ? (
     <>
       <div className="flex items-center justify-center absolute left-5 top-5">
-        <Link to="/dashboard">
+        <Link to="/home">
           <TiHome className="text-cullen w-9 h-auto mr-3" title="Home" />
         </Link>
         <Link to="/ranking">

@@ -1,53 +1,56 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
+
+import Header from "../components/Header";
+import Screen from "../components/Screen";
 
 import { useAuth } from "../hooks/useAuth";
-import Footer from "../components/Footer";
-import Logo from "../assets/logo.svg";
-import Screen from "../components/Screen";
+import { database } from "../services/firebase";
+import { createShuffledCards } from "../store/reducers/game";
 
 export default function Home() {
   const history = useHistory();
-  const { user, signInWithGoogle } = useAuth();
+  const { user } = useAuth();
 
-  async function handleLogin() {
-    if (!user) {
-      await signInWithGoogle();
-    }
+  async function handleCreateGame() {
+    const gameRef = database.ref("games");
+    const cards = createShuffledCards();
 
-    history.push("/dashboard");
+    const firebaseGame = await gameRef.push({
+      adminId: user.id,
+      cards: cards,
+      gameWasFinished: false,
+      start: false,
+      players: [],
+    });
+
+    await database.ref(`games/${firebaseGame.key}/players`).push({
+      id: user.id,
+      user,
+      score: 0,
+      myTurn: true,
+    });
+
+    history.push(`${firebaseGame.key}/lobby`);
   }
 
   return (
     <Screen>
-      <div className="flex items-center justify-center mb-36 md:mb-24">
-        <img src={Logo} alt="Logo" className="w-20 h-auto m-3 md:w-48 md:m-8" />
-        <h1 className="font-righteous text-cullen text-4xl md:text-7xl">
-          Memory Game
-        </h1>
-      </div>
+      <Header />
 
-      <div className="flex flex-col md:flex-row items-center justify-center">
-        <Link to="/alone/game">
-          <button className="bg-indigo-700 mb-5 md:mb-0 md:mr-5 hover:bg-opacity-75 duration-300 w-48 h-14 font-righteous text-cullen text-1xl rounded-xl md:w-80 md:h-20 md:text-2xl">
-            Jogar Sozinho
+      {user && (
+        <div className="flex flex-col items-center justify-center">
+          <button
+            onClick={handleCreateGame}
+            className="flex items-center justify-center bg-indigo-700 mb-2 hover:bg-opacity-75 duration-300 w-64 h-14 font-righteous text-cullen text-xl rounded-md"
+            disabled={!user}
+          >
+            <FaPlus className="mr-2" />
+            Criar novo jogo
           </button>
-        </Link>
-        <button
-          onClick={handleLogin}
-          className="flex items-center justify-center bg-marcelin hover:bg-opacity-75 duration-300 w-48 h-14 font-righteous text-cullen text-1xl rounded-xl md:w-80 md:h-20 md:text-2xl"
-        >
-          <FaGoogle className="mr-2" />
-          Jogar com amigos
-        </button>
-      </div>
-
-      <h3 className="font-roboto mt-3 text-cullen text-sm md:text-sm">
-        Para jogar com seus amigos, faça login com o google
-      </h3>
-
-      <Footer />
+        </div>
+      )}
     </Screen>
   );
 }
