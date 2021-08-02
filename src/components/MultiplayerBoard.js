@@ -49,44 +49,50 @@ export default function MultiplayerBoard({ cards, gameId }) {
   if (cards.length === 0) return;
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center">
-      <div className="flex items-center justify-center">
-        <User user={myUser.user} turn={myUser.myTurn} />
-        <h1 className="font-righteous text-cullen text-3xl">{myUser.score}</h1>
-      </div>
-      <div
-        className={`grid grid-cols-4 m-2 md:m-10 ${
-          cards.length === 24 && "md:grid-cols-6"
-        } `}
-      >
-        {cards.map(card => {
-          return (
-            <MultiplayerCard
-              options={card}
-              gameId={gameId}
-              isOpen={card.isOpen}
-              key={card.id}
-              turn={myUser.myTurn}
-              userId={myUser.id}
-            />
-          );
-        })}
-      </div>
-      <div className="flex items-center justify-center h-auto">
-        {otherPlayers.map(player => {
-          return (
-            <div className="flex items-center justify-center" key={player.id}>
-              <User user={player.user} turn={player.myTurn} />
-              <h1 className="font-righteous text-cullen text-3xl">
-                {player.score}
-              </h1>
-            </div>
-          );
-        })}
+    <>
+      <div className="flex flex-col md:flex-row items-center justify-center">
+        <div className="flex items-center justify-center">
+          <User user={myUser.user} turn={myUser.myTurn} />
+          <h1 className="font-righteous text-cullen text-3xl">
+            {myUser.score}
+          </h1>
+        </div>
+        <div
+          className={`grid grid-cols-4 m-2 md:m-10 ${
+            cards.length === 24 && "md:grid-cols-6"
+          } `}
+        >
+          {cards.map(card => {
+            return (
+              <MultiplayerCard
+                options={card}
+                gameId={gameId}
+                isOpen={card.isOpen}
+                key={card.id}
+                turn={myUser.myTurn}
+                userId={myUser.id}
+              />
+            );
+          })}
+        </div>
+        <div className="flex items-center justify-center h-auto">
+          {otherPlayers.map(player => {
+            return (
+              <div className="flex items-center justify-center" key={player.id}>
+                <User user={player.user} turn={player.myTurn} />
+                <h1 className="font-righteous text-cullen text-3xl">
+                  {player.score}
+                </h1>
+              </div>
+            );
+          })}
+        </div>
       </div>
       {endMessage && (
-        <h1 className="text-cullen font-righteous text-sm">{endMessage}</h1>
+        <h1 className="text-cullen font-righteous text-sm md:text-2xl">
+          {endMessage}
+        </h1>
       )}
-    </div>
+    </>
   );
 }
