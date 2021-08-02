@@ -49,12 +49,16 @@ export default function MultiplayerBoard({ cards, gameId }) {
   if (cards.length === 0) return;
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col md:flex-row items-center justify-center">
       <div className="flex items-center justify-center">
         <User user={myUser.user} turn={myUser.myTurn} />
-        <h1 className="font-righteous text-cullen">{myUser.score}</h1>
+        <h1 className="font-righteous text-cullen text-3xl">{myUser.score}</h1>
       </div>
-      <div className="grid grid-cols-4">
+      <div
+        className={`grid grid-cols-4 m-2 md:m-10 ${
+          cards.length === 24 && "md:grid-cols-6"
+        } `}
+      >
         {cards.map(card => {
           return (
             <MultiplayerCard
@@ -73,7 +77,9 @@ export default function MultiplayerBoard({ cards, gameId }) {
           return (
             <div className="flex items-center justify-center" key={player.id}>
               <User user={player.user} turn={player.myTurn} />
-              <h1 className="font-righteous text-cullen">{player.score}</h1>
+              <h1 className="font-righteous text-cullen text-3xl">
+                {player.score}
+              </h1>
             </div>
           );
         })}

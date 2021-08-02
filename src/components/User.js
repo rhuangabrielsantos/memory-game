@@ -10,7 +10,9 @@ export default function User({ user, turn }) {
       <img
         src={user.avatar}
         alt={user.name}
-        className={`rounded-full w-20 ${turn && "border-4 border-marcelin"}`}
+        className={`rounded-full w-16 md:w-20 ${
+          turn && "border-4 border-marcelin"
+        }`}
       />
     </div>
   );
