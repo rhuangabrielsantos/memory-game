@@ -6,7 +6,6 @@ import { useHistory, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
 import Screen from "../components/Screen";
@@ -24,7 +23,7 @@ export default function MultiplayerLobby() {
 
   async function handleEnterGame() {
     if (!user) {
-      toast.dark("Você precisa fazer login para entrar na partida");
+      toast.dark("Você precisa fazer login para jogar");
       return;
     }
 
@@ -99,39 +98,48 @@ export default function MultiplayerLobby() {
     <Screen>
       <Header />
 
+      <h1 className="font-righteous text-cullen text-5xl mb-10">Jogadores</h1>
       <div className="grid grid-cols-2">
         {players.map(player => (
           <User user={player.user} key={player.id} />
         ))}
       </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-center mt-10">
-        {players.filter(player => {
-          return player.id === user?.id;
-        }).length !== 1 && (
+      {players.filter(player => {
+        return player.id === user?.id;
+      }).length !== 1 && (
+        <div className="flex flex-row items-center justify-center mt-10">
           <button
-            className="w-36 h-14 mr-2 rounded-md bg-dracula text-white font-righteous"
+            className="w-36 h-14 rounded-md bg-dracula hover:bg-opacity-75 duration-300 text-white font-righteous"
             onClick={handleEnterGame}
           >
             Entrar no Jogo
           </button>
-        )}
-        {gameInformation.adminId === user?.id && (
-          <button
-            className="w-36 h-14 rounded-md bg-indigo-700 text-white font-righteous mr-2"
-            onClick={handleStartGame}
-          >
-            Começar Jogo
-          </button>
-        )}
-        <div
-          className="cursor-pointer w-72 h-16 mt-3 md:mt-0 flex items-center justify-center border-2 border-blue rounded-md"
-          onClick={copyToClipboard}
-        >
-          <FaRegCopy className="text-cullen w-6 h-auto mr-3" />
-          <span className="text-cullen font-righteous">{id}</span>
         </div>
-      </div>
+      )}
+      {gameInformation.adminId === user?.id && (
+        <>
+          <div className="flex flex-row items-center justify-center mt-10">
+            <div
+              className="cursor-pointer mr-2 w-14 h-14 flex items-center justify-center border-2 hover:bg-aro duration-300 border-aro rounded-md"
+              onClick={copyToClipboard}
+              title="Clique aqui para copiar o código da sala"
+            >
+              <FaRegCopy className="text-gray-200 w-6 h-auto" />
+            </div>
+            <button
+              className="w-36 h-14 rounded-md bg-indigo-700 hover:bg-opacity-75 duration-300 text-white font-righteous mr-2"
+              onClick={handleStartGame}
+            >
+              Começar Jogo
+            </button>
+          </div>
+          <p className="text-cullen font-roboto text-sm w-80 text-center mt-4">
+            Copie o código e envie para seus amigos!
+          </p>
+        </>
+      )}
+
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -143,8 +151,6 @@ export default function MultiplayerLobby() {
         draggable
         pauseOnHover
       />
-
-      <Footer />
     </Screen>
   );
 }

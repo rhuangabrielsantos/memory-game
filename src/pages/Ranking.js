@@ -1,8 +1,11 @@
 import React from "react";
 import { useEffect } from "react";
 
+import Header from "../components/Header";
+import Loading from "../components/Loading";
+import Screen from "../components/Screen";
+
 import { database } from "../services/firebase";
-import Loading from "./Loading";
 
 export default function Ranking() {
   const [ranking, setRanking] = React.useState([]);
@@ -37,7 +40,8 @@ export default function Ranking() {
   }, []);
 
   return (
-    <div className=" flex flex-col items-center justify-center w-screen h-1/2 mt-5">
+    <Screen>
+      <Header />
       {ranking.length === 0 ? (
         <>
           <Loading />
@@ -49,7 +53,7 @@ export default function Ranking() {
             <tbody>
               {ranking.map((item, index) => {
                 return (
-                  index < 5 && (
+                  index < 10 && (
                     <tr key={index}>
                       <td className="font-righteous text-lg text-cullen w-1/8">
                         {index + 1}º
@@ -76,6 +80,6 @@ export default function Ranking() {
           </table>
         </>
       )}
-    </div>
+    </Screen>
   );
 }

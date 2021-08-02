@@ -1,5 +1,7 @@
 import React from "react";
-import { FaGoogle, FaHome } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
+import { TiHome } from "react-icons/ti";
+import { IoPodium } from "react-icons/io5";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
@@ -21,14 +23,19 @@ export default function Header() {
 
   return user !== undefined ? (
     <>
-      <Link to="/dashboard">
-        <FaHome className="absolute left-5 top-5 text-cullen w-7 h-auto" />
-      </Link>
+      <div className="flex items-center justify-center absolute left-5 top-5">
+        <Link to="/dashboard">
+          <TiHome className="text-cullen w-9 h-auto mr-3" title="Home" />
+        </Link>
+        <Link to="/ranking">
+          <IoPodium className="text-cullen w-9 h-auto" title="Ranking" />
+        </Link>
+      </div>
+
       <div className="absolute top-5 right-5 flex items-center justify-center gap-3">
-        <img src={user.avatar} alt={user.name} className="w-7 rounded-full" />
-        <h1 className="font-righteous text-cullen">{user.name}</h1>
+        <img src={user.avatar} alt={user.name} className="w-9 rounded-full" />
         <button
-          className="w-24 h-9 bg-marcelin text-white rounded-md"
+          className="w-24 h-9 font-righteous bg-marcelin hover:opacity-80 duration-300 text-white rounded-md"
           onClick={handleSignOut}
         >
           Sair
