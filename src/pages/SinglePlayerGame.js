@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Board from "../components/Board";
-import Fireworks from "../components/Fireworks";
 import Footer from "../components/Footer";
 import Screen from "../components/Screen";
 import { createArrayCards } from "../store/reducers/cards";
@@ -34,8 +33,6 @@ export default function SinglePlayerGame() {
         <Board />
         <Footer />
       </Screen>
-
-      <Fireworks />
     </>
   );
 }
