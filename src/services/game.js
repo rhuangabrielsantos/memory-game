@@ -42,7 +42,6 @@ export async function resetGameOrMatchCards(gameId, userId) {
 
       await updateScore(gameId, userId);
       await updateCards(gameId, newCards);
-      await updateTurn(gameId);
       return;
     }
 
