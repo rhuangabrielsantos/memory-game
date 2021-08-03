@@ -25,10 +25,16 @@ export default function Header() {
     <>
       <div className="flex items-center justify-center absolute left-5 top-5">
         <Link to="/home">
-          <TiHome className="text-cullen w-9 h-auto mr-3" title="Home" />
+          <TiHome
+            className="text-cullen hover:opacity-80 duration-300 w-9 h-auto mr-3"
+            title="Home"
+          />
         </Link>
         <Link to="/ranking">
-          <IoPodium className="text-cullen w-9 h-auto" title="Ranking" />
+          <IoPodium
+            className="text-cullen hover:opacity-80 duration-300 w-9 h-auto"
+            title="Ranking"
+          />
         </Link>
       </div>
 

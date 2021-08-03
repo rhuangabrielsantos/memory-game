@@ -92,7 +92,14 @@ export default function MultiplayerLobby() {
     };
   }, [id, history]);
 
-  if (!players) return <Loading />;
+  if (!players) {
+    return (
+      <>
+        <Header />
+        <Loading />
+      </>
+    );
+  }
 
   return (
     <Screen>

@@ -75,12 +75,15 @@ export default function MultiplayerBoard({ cards, gameId }) {
             );
           })}
         </div>
-        <div className="flex items-center justify-center h-auto">
+        <div className="flex md:flex-col items-center justify-center h-auto">
           {otherPlayers.map(player => {
             return (
               <div className="flex items-center justify-center" key={player.id}>
+                <h1 className="font-righteous invisible md:visible text-cullen text-3xl">
+                  {player.score}
+                </h1>
                 <User user={player.user} turn={player.myTurn} />
-                <h1 className="font-righteous text-cullen text-3xl">
+                <h1 className="font-righteous visible md:invisible text-cullen text-3xl">
                   {player.score}
                 </h1>
               </div>

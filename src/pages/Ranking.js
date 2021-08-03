@@ -44,6 +44,7 @@ export default function Ranking() {
       <Header />
       {ranking.length === 0 ? (
         <>
+          <Header />
           <Loading />
         </>
       ) : (

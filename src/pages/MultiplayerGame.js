@@ -33,7 +33,12 @@ export default function MultiplayerGame() {
   }, [gameId]);
 
   if (cards.length === 0) {
-    return <Loading />;
+    return (
+      <>
+        <Header />
+        <Loading />
+      </>
+    );
   }
 
   return (
