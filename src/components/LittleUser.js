@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function User({ user, turn }) {
+export default function LittleUser({ user, turn }) {
   if (!user?.avatar || !user?.name) {
     return <div></div>;
   }
@@ -10,7 +10,7 @@ export default function User({ user, turn }) {
       <img
         src={user.avatar}
         alt={user.name}
-        className={`rounded-full w-16 ${turn && "border-4 border-marcelin"}`}
+        className={`rounded-full w-8 ${turn && "border-4 border-marcelin"}`}
       />
     </div>
   );

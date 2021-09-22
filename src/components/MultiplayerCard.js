@@ -36,7 +36,7 @@ export default function MultiplayerCard({
 
   return (
     <motion.div
-      className="w-16 h-16 md:w-24 md:h-24"
+      className="w-16 h-16 md:w-20 md:h-20"
       style={{
         position: "relative",
         float: "left",
@@ -44,7 +44,7 @@ export default function MultiplayerCard({
       }}
     >
       <motion.div
-        className="bg-dracula flex items-center justify-center w-16 h-16 md:w-24 md:h-24"
+        className="bg-dracula flex items-center justify-center w-16 h-16 md:w-20 md:h-20"
         style={{
           borderRadius: 10,
           position: "absolute",
@@ -60,7 +60,7 @@ export default function MultiplayerCard({
       </motion.div>
 
       <motion.div
-        className="bg-vonCount flex items-center justify-center w-16 h-16 md:w-24 md:h-24"
+        className="bg-vonCount flex items-center justify-center w-16 h-16 md:w-20 md:h-20"
         style={{
           borderRadius: 10,
           position: "absolute",

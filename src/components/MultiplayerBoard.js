@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import { database } from "../services/firebase";
 
 import MultiplayerCard from "./MultiplayerCard";
+import LittleUser from "./LittleUser";
 import User from "./User";
 
 export default function MultiplayerBoard({ cards, gameId }) {
@@ -59,7 +60,13 @@ export default function MultiplayerBoard({ cards, gameId }) {
         </div>
         <div
           className={`grid grid-cols-4 m-2 md:m-10 ${
-            cards.length === 24 && "md:grid-cols-6"
+            cards.length === 24
+              ? "md:grid-cols-6"
+              : cards.length === 32
+              ? "md:grid-cols-8"
+              : cards.length === 50
+              ? "md:grid-cols-10"
+              : ""
           } `}
         >
           {cards.map(card => {
@@ -75,14 +82,14 @@ export default function MultiplayerBoard({ cards, gameId }) {
             );
           })}
         </div>
-        <div className="flex md:flex-col items-center justify-center h-auto">
+        <div className="grid grid-cols-2">
           {otherPlayers.map(player => {
             return (
               <div className="flex items-center justify-center" key={player.id}>
                 <h1 className="font-righteous invisible md:visible text-cullen text-3xl">
                   {player.score}
                 </h1>
-                <User user={player.user} turn={player.myTurn} />
+                <LittleUser user={player.user} turn={player.myTurn} />
                 <h1 className="font-righteous visible md:invisible text-cullen text-3xl">
                   {player.score}
                 </h1>

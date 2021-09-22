@@ -27,7 +27,7 @@ export default function MultiplayerLobby() {
       return;
     }
 
-    if (players.length === 4) {
+    if (players.length === 12) {
       toast.dark("O numero máximo de jogadores foi atingido");
       return;
     }
@@ -106,7 +106,7 @@ export default function MultiplayerLobby() {
       <Header />
 
       <h1 className="font-righteous text-cullen text-5xl mb-10">Jogadores</h1>
-      <div className="grid grid-cols-2 md:flex md:items-center md:justify-center">
+      <div className="grid grid-cols-4 md:flex md:items-center md:justify-center">
         {players.map(player => (
           <User user={player.user} key={player.id} />
         ))}
@@ -124,6 +124,16 @@ export default function MultiplayerLobby() {
           </button>
         </div>
       )}
+      {players.filter(player => {
+        return player.id === user?.id;
+      }).length === 1 &&
+        gameInformation.adminId !== user?.id && (
+          <div className="flex flex-row items-center justify-center mt-10">
+            <p className="text-cullen font-roboto text-sm w-100 text-center mt-4">
+              Aguarde o host iniciar a partida!
+            </p>
+          </div>
+        )}
       {gameInformation.adminId === user?.id && (
         <>
           <div className="flex flex-row items-center justify-center mt-10">
