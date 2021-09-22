@@ -27,7 +27,7 @@ export default function MultiplayerLobby() {
       return;
     }
 
-    if (players.length === 12) {
+    if (players.length === 15) {
       toast.dark("O numero máximo de jogadores foi atingido");
       return;
     }
