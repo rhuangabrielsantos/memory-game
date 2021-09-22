@@ -14,6 +14,15 @@ import Pig from "../../assets/pig.png";
 import Fox from "../../assets/fox.png";
 import Bee from "../../assets/bee.png";
 import Penguin from "../../assets/penguin.png";
+import Chicken from "../../assets/chicken.png";
+import Elephant from "../../assets/elephant.png";
+import Hippo from "../../assets/hippo.png";
+import Owl from "../../assets/owl.png";
+import Snake from "../../assets/snake.png";
+import Toucan from "../../assets/toucan.png";
+import Crawl from "../../assets/crawl.png";
+import Fish from "../../assets/fish.png";
+import Snail from "../../assets/snail.png";
 
 import ArrayUtils from "../actions/arrayUtils";
 
@@ -37,6 +46,15 @@ export function createArrayCards(size) {
     Fox,
     Bee,
     Penguin,
+    Chicken,
+    Elephant,
+    Hippo,
+    Owl,
+    Snake,
+    Toucan,
+    Crawl,
+    Fish,
+    Snail,
   ];
 
   let id = 1;
